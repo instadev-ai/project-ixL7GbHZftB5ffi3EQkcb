@@ -1,12 +1,11 @@
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
-import { Suspense } from 'react'
 import { Card } from './ui/card'
 
 function Box() {
   return (
     <mesh>
-      <boxGeometry args={[1, 1, 1]} />
+      <boxGeometry args={[2, 2, 2]} />
       <meshStandardMaterial color="orange" />
     </mesh>
   )
@@ -15,12 +14,10 @@ function Box() {
 export default function ProductViewer() {
   return (
     <Card className="w-full h-[600px] relative overflow-hidden">
-      <Canvas>
-        <Suspense fallback={null}>
-          <ambientLight intensity={0.5} />
-          <pointLight position={[10, 10, 10]} />
-          <Box />
-        </Suspense>
+      <Canvas dpr={[1, 2]} camera={{ position: [0, 0, 5], fov: 45 }}>
+        <ambientLight intensity={0.5} />
+        <pointLight position={[10, 10, 10]} />
+        <Box />
         <OrbitControls />
       </Canvas>
       
