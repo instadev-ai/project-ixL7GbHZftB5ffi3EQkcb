@@ -1,3 +1,5 @@
+import ProductViewer from '../components/ProductViewer'
+
 const Index = () => {
   return (
     <div className="min-h-screen p-8 bg-background">
@@ -9,7 +11,6 @@ const Index = () => {
           </p>
         </div>
         
-        {/* We'll dynamically import the ProductViewer to avoid SSR issues */}
         <div className="w-full aspect-square md:aspect-[4/3]">
           <ProductViewer />
         </div>
