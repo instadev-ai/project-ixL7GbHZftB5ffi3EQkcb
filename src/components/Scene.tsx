@@ -1,10 +1,10 @@
 import { Canvas } from '@react-three/fiber'
-import { OrbitControls } from '@react-three/drei'
+import { Suspense } from 'react'
 
 function Box() {
   return (
     <mesh>
-      <boxGeometry args={[1, 1, 1]} />
+      <boxGeometry />
       <meshStandardMaterial color="orange" />
     </mesh>
   )
@@ -13,12 +13,16 @@ function Box() {
 export default function Scene() {
   return (
     <div style={{ width: '100%', height: '400px' }}>
-      <Canvas>
-        <ambientLight intensity={0.5} />
-        <pointLight position={[10, 10, 10]} />
-        <Box />
-        <OrbitControls />
-      </Canvas>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Canvas
+          dpr={[1, 2]}
+          camera={{ position: [0, 0, 5], fov: 45 }}
+        >
+          <ambientLight intensity={0.5} />
+          <pointLight position={[10, 10, 10]} />
+          <Box />
+        </Canvas>
+      </Suspense>
     </div>
   )
 }
